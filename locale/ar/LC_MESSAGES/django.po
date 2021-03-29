@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 12:48+0200\n"
+"POT-Creation-Date: 2021-03-29 14:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -832,8 +832,15 @@ msgid "نوع التخدير"
 msgstr ""
 
 #: .\patient\templates\delivery\create-delivery.html:118
+msgid "طبيــب التخدير"
+msgstr ""
+
+#: .\patient\templates\delivery\list-delivery.html:13 .\patient\views.py:23
+msgid "All Patients"
+msgstr "المريضات"
+
 #: .\patient\templates\delivery\list-delivery.html:35
-msgid "دكتور التخدير"
+msgid "طبيب التخدير"
 msgstr ""
 
 #: .\patient\templates\diabetes.html:94
@@ -982,10 +989,6 @@ msgstr "تسجيل خروج للمريضة - "
 #: .\patient\templates\view-patient.html:358
 msgid "Yes"
 msgstr "موافق"
-
-#: .\patient\views.py:23
-msgid "All Patients"
-msgstr "المريضات"
 
 #: .\patient\views.py:70
 msgid "ADD NEW PATIENT"
@@ -1240,7 +1243,7 @@ msgstr "تم الحفظ بنجاح"
 
 #: .\surgery\views.py:156
 msgid "Doctors List"
-msgstr "قائمة الدكاترة"
+msgstr "قـائمة الأطباء"
 
 #: .\womanClinic\settings.py:147
 msgid "English"
@@ -1335,7 +1338,7 @@ msgstr "العمليات الجراحية"
 
 #: .\womanClinic\templates\side-bar.html:47
 msgid "Surgery Doctors"
-msgstr "دكاترة العمليات"
+msgstr "أطباء العمليات"
 
 #: .\womanClinic\templates\side-bar.html:54
 #: .\womanClinic\templates\side-bar.html:60
