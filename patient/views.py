@@ -7,14 +7,15 @@ from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib import messages
 from patient.models import (Patient, Patient_Files, Delivery, Check_Up,
                             Gynecology, Patient_Medicine, Patient_Days_Off,
-                            Ultrasound, Diabetes, Patient_Exit, Past_Medical_History)
+                            Ultrasound, Diabetes, Patient_Exit, Past_Medical_History, Patient_Gynecology)
 from patient.forms import (PatientForm, Patient_Files_formset,
                            DeliveryForm, Delivery_Check_Up_formset,
                            Gynecology_formset, GynecologyForm,
                            Check_Up_Form, Patient_Medicine_formset,
                            Patient_Days_Off_formset, Ultrasound_Form,
-                           Diabetes_Form, Patient_Exit_Form, Past_Medical_History_Form)
+                           Diabetes_Form, Patient_Exit_Form, Past_Medical_History_Form, Patient_Gynecology_formset)
 from django.utils.translation import ugettext_lazy as _
+
 
 
 @login_required(login_url='/login')
@@ -26,18 +27,27 @@ def list_patients_view(request):
 def create_patient_view(request):
     patient_form = PatientForm(form_type='create',)
     patient_attachments = Patient_Files_formset()
+    patient_gynecology = Patient_Gynecology_formset()
     patient_past_med = Past_Medical_History_Form(form_type='create',)
     if request.method == 'POST':
         patient_form = PatientForm(request.POST, form_type='create')
         patient_attachments = Patient_Files_formset(request.POST, request.FILES)
+        patient_gynecology = Patient_Gynecology_formset(request.POST)
         patient_past_med = Past_Medical_History_Form(request.POST, form_type='create')
-        if patient_form.is_valid() and patient_attachments.is_valid() and patient_past_med.is_valid():
+        if patient_form.is_valid() and patient_attachments.is_valid() and patient_gynecology.is_valid() and patient_past_med.is_valid():
             master_obj = patient_form.save(commit=False)
             master_obj.hospital_id = request.user.clinic_id
             master_obj.barcode = master_obj.insurance_number
             master_obj.created_by = request.user
             master_obj.last_update_by = request.user
             master_obj.save()
+            patient_gynecology = Patient_Gynecology_formset(request.POST, instance=master_obj)
+            if patient_gynecology.is_valid():
+                patient_gynecology_form = patient_gynecology.save(commit=False)
+                for patient_gyno_obj in patient_gynecology_form:
+                    patient_gyno_obj.created_by = request.user
+                    patient_gyno_obj.last_update_by = request.user
+                    patient_gyno_obj.save()
             patient_attachments = Patient_Files_formset(request.POST, request.FILES, instance=master_obj)
             detail_obj = patient_attachments.save(commit=False)
             for x in detail_obj:
@@ -70,6 +80,7 @@ def create_patient_view(request):
                      'page_title':_('ADD NEW PATIENT'),
                      'patient_form':patient_form,
                      'patient_attachments':patient_attachments,
+                     'patient_gynecology':patient_gynecology,
                      'patient_past_med':patient_past_med,
     }
     return render(request, 'create-patient.html', createContext)
@@ -122,11 +133,13 @@ def update_patient_view(request, pk):
     required_patient = Patient.objects.get(pk=pk)
     patient_form = PatientForm(form_type='update', instance=required_patient)
     required_patient_past_med = Past_Medical_History.objects.filter(patient = pk).first()
+    patient_gynecology = Patient_Gynecology_formset(instance=required_patient)
     patient_past_med = Past_Medical_History_Form(form_type='update', instance=required_patient_past_med)
     patient_attachments = Patient_Files_formset(instance=required_patient)
     if request.method == 'POST':
         patient_form = PatientForm(request.POST, form_type='update', instance=required_patient)
         patient_past_med = Past_Medical_History_Form(request.POST, form_type='update', instance=required_patient)
+        patient_gynecology = Patient_Gynecology_formset(request.POST, instance=required_patient)
         patient_attachments = Patient_Files_formset(request.POST, request.FILES, instance=required_patient)
         if patient_form.is_valid() and patient_attachments.is_valid() and patient_past_med.is_valid():
             master_obj = patient_form.save(commit=False)
@@ -134,6 +147,15 @@ def update_patient_view(request, pk):
             master_obj.barcode = master_obj.insurance_number
             master_obj.last_update_by = request.user
             master_obj.save()
+
+            patient_gynecology = Patient_Gynecology_formset(request.POST, instance=master_obj)
+            if patient_gynecology.is_valid():
+                patient_gynecology_form = patient_gynecology.save(commit=False)
+                for patient_gyno_obj in patient_gynecology_form:
+                    patient_gyno_obj.created_by = request.user
+                    patient_gyno_obj.last_update_by = request.user
+                    patient_gyno_obj.save()
+
             patient_attachments = Patient_Files_formset(request.POST, request.FILES, instance=master_obj)
             detail_obj = patient_attachments.save(commit=False)
             for x in detail_obj:
@@ -157,6 +179,7 @@ def update_patient_view(request, pk):
                      'page_title':_('EDIT PATIENT {}').format(required_patient),
                      'patient_form':patient_form,
                      'patient_past_med':patient_past_med,
+                     'patient_gynecology':patient_gynecology,
                      'patient_id':pk,
                      'patient_attachments':patient_attachments,
     }

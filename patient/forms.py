@@ -3,7 +3,7 @@ from crispy_forms.helper import FormHelper
 from patient.models import (Patient,Delivery,Check_Up,
                             Patient_Files,Gynecology, Patient_Medicine,
                             Patient_Days_Off, Ultrasound, Diabetes,
-                             Patient_Exit, Past_Medical_History)
+                             Patient_Exit, Past_Medical_History, Patient_Gynecology)
 
 common_items_to_execlude = (
                             'start_date','end_date',
@@ -122,6 +122,22 @@ class GynecologyForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'form-control'
 
 Gynecology_formset = forms.modelformset_factory(Gynecology, form=GynecologyForm, extra=10)
+
+
+class Patient_GynecologyForm(forms.ModelForm):
+    class Meta:
+        model = Patient_Gynecology
+        fields = '__all__'
+        exclude = common_items_to_execlude
+
+    def __init__(self, *args, **kwargs):
+        super(Patient_GynecologyForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_show_labels = False
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+Patient_Gynecology_formset = forms.inlineformset_factory(Patient, Patient_Gynecology, form=Patient_GynecologyForm, extra=1)
 
 class Check_Up_Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):

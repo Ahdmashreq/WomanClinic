@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-29 14:44+0200\n"
+"POT-Creation-Date: 2021-04-06 15:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,13 +170,13 @@ msgid "Exit Date"
 msgstr "تاريخ الخروج"
 
 #: .\patient\models.py:50 .\patient\models.py:154 .\patient\models.py:221
-#: .\patient\models.py:249 .\pharmacy\models.py:12 .\surgery\models.py:10
+#: .\patient\models.py:250 .\pharmacy\models.py:12 .\surgery\models.py:10
 #: .\surgery\models.py:23 .\surgery\models.py:53
 msgid "Start Date"
 msgstr "تاريخ البداية"
 
 #: .\patient\models.py:51 .\patient\models.py:155 .\patient\models.py:180
-#: .\patient\models.py:222 .\patient\models.py:250 .\pharmacy\models.py:13
+#: .\patient\models.py:222 .\patient\models.py:251 .\pharmacy\models.py:13
 #: .\surgery\models.py:11 .\surgery\models.py:24 .\surgery\models.py:54
 msgid "End Date"
 msgstr "تاريخ النهاية"
@@ -385,8 +385,8 @@ msgstr "انثي"
 msgid "Twins"
 msgstr "توأم"
 
-#: .\patient\models.py:170 .\patient\models.py:197 .\patient\models.py:260
-#: .\patient\models.py:290 .\surgery\models.py:45
+#: .\patient\models.py:170 .\patient\models.py:197 .\patient\models.py:271
+#: .\patient\models.py:301 .\surgery\models.py:45
 msgid "Patient"
 msgstr "المريضة"
 
@@ -452,7 +452,7 @@ msgstr "الاسبوع رقم"
 msgid "Complain"
 msgstr "الشكوي"
 
-#: .\patient\models.py:200 .\patient\models.py:280
+#: .\patient\models.py:200 .\patient\models.py:291
 #: .\patient\templates\check-up\create-check-up.html:174
 msgid "Visit date"
 msgstr "تاريخ الزيارة"
@@ -527,7 +527,7 @@ msgstr ""
 msgid "Allergy Hx"
 msgstr "تاريخ الحساسية"
 
-#: .\patient\models.py:232 .\patient\models.py:278
+#: .\patient\models.py:232 .\patient\models.py:289
 msgid "Follow up"
 msgstr "المتابعة الدورية"
 
@@ -543,53 +543,57 @@ msgstr "تاريخ الصرف"
 msgid "Dose"
 msgstr "الجرعة"
 
-#: .\patient\models.py:236 .\patient\models.py:264
+#: .\patient\models.py:236 .\patient\models.py:275
 msgid "Notes"
 msgstr "ملاحظات"
 
-#: .\patient\models.py:247 .\patient\templates\gyno\list-gyno.html:43
+#: .\patient\models.py:248 .\patient\templates\gyno\list-gyno.html:43
 #: .\patient\templates\gyno\list-gyno.html:50
 msgid "Diagnosis EN"
 msgstr "التشخيص بالانجليزيه"
 
-#: .\patient\models.py:248 .\patient\templates\gyno\list-gyno.html:44
+#: .\patient\models.py:249 .\patient\templates\gyno\list-gyno.html:44
 #: .\patient\templates\gyno\list-gyno.html:51
 msgid "Diagnosis AR"
 msgstr "التشخيص بالعربي"
 
-#: .\patient\models.py:261
+#: .\patient\models.py:263 .\patient\templates\create-patient.html:312
+msgid "Patient Gynecology"
+msgstr "تشخيص امراض النسا للمريضة"
+
+#: .\patient\models.py:272
 msgid "Days-off Start Date"
 msgstr "تاريخ بداية الاجازة"
 
-#: .\patient\models.py:262
+#: .\patient\models.py:273
 msgid "Days-off End Date"
 msgstr "تاريخ نهاية الاجازة"
 
-#: .\patient\models.py:263
+#: .\patient\models.py:274
 msgid "Number of days"
 msgstr "عدد الايام"
 
-#: .\patient\models.py:279
+#: .\patient\models.py:290
 msgid "Prognosis"
 msgstr "التشخيص"
 
-#: .\patient\models.py:291
+#: .\patient\models.py:302
 msgid "Blood sugar"
 msgstr "سكر الدم"
 
-#: .\patient\models.py:292
+#: .\patient\models.py:303
 msgid "BP Up"
 msgstr "ضغط الدم / اعلي"
 
-#: .\patient\models.py:293
+#: .\patient\models.py:304
 msgid "BP Down"
 msgstr "ضغط الدم / اسفل"
 
-#: .\patient\models.py:294
+#: .\patient\models.py:305
 msgid "Temprature"
 msgstr "درجة الحرارة"
 
-#: .\patient\models.py:295
+#: .\patient\models.py:306
 msgid "reading date"
 msgstr "تاريخ القراءة"
 
@@ -597,7 +601,7 @@ msgstr "تاريخ القراءة"
 #: .\patient\templates\check-up\create-med.html:68
 #: .\patient\templates\check-up\create-ultrasound.html:59
 #: .\patient\templates\create-days-off.html:24
-#: .\patient\templates\create-patient.html:358
+#: .\patient\templates\create-patient.html:402
 #: .\patient\templates\delivery\create-delivery.html:24
 #: .\patient\templates\diabetes.html:24
 #: .\patient\templates\gyno\update-gyno.html:24
@@ -676,7 +680,7 @@ msgid "Ultrasound"
 msgstr "الســونار"
 
 #: .\patient\templates\check-up\create-med.html:71
-#: .\patient\templates\create-patient.html:361
+#: .\patient\templates\create-patient.html:405
 #: .\patient\templates\gyno\update-gyno.html:27
 #: .\patient\templates\patient-exit.html:87
 #: .\pharmacy\templates\create-medicine.html:27
@@ -792,12 +796,17 @@ msgstr "شاشة بيانات المريضة"
 msgid "Patient medical history"
 msgstr "التاريخ المرضي للمريضة"
 
-#: .\patient\templates\create-patient.html:312
+#: .\patient\templates\create-patient.html:341
+#: .\surgery\templates\create-surgery.html:69
+msgid "Add New Line"
+msgstr "اضـافة سطر جديد"
+
+#: .\patient\templates\create-patient.html:356
 #: .\patient\templates\view-patient.html:313
 msgid "Patient Fiels"
 msgstr "ملفات المريضة"
 
-#: .\patient\templates\create-patient.html:355
+#: .\patient\templates\create-patient.html:399
 msgid "Save & Clear Form"
 msgstr "الحفظ و مسح البيانات"
 
@@ -835,7 +844,7 @@ msgstr ""
 msgid "طبيــب التخدير"
 msgstr ""
 
-#: .\patient\templates\delivery\list-delivery.html:13 .\patient\views.py:23
+#: .\patient\templates\delivery\list-delivery.html:13 .\patient\views.py:24
 msgid "All Patients"
 msgstr "المريضات"
 
@@ -990,84 +999,84 @@ msgstr "تسجيل خروج للمريضة - "
 msgid "Yes"
 msgstr "موافق"
 
-#: .\patient\views.py:70
+#: .\patient\views.py:80
 msgid "ADD NEW PATIENT"
 msgstr "اضافة مريضة جديدة"
 
-#: .\patient\views.py:96
+#: .\patient\views.py:107
 msgid "FOLLOW UP MAIN PAGE"
 msgstr "شاشة المتابعة الرئيسية"
 
-#: .\patient\views.py:157
+#: .\patient\views.py:179
 msgid "EDIT PATIENT {}"
 msgstr "تعديل بيانات المريضة {}"
 
-#: .\patient\views.py:188
+#: .\patient\views.py:211
 msgid "GYN LIST"
 msgstr ""
 
-#: .\patient\views.py:189
+#: .\patient\views.py:212
 msgid "GYN DIAGNOSIS"
 msgstr ""
 
-#: .\patient\views.py:211
+#: .\patient\views.py:234
 msgid "تشخيص امراض النسا"
 msgstr ""
 
-#: .\patient\views.py:228 .\surgery\views.py:202
+#: .\patient\views.py:251 .\surgery\views.py:202
 msgid "EDIT {}"
 msgstr "تعديل {}"
 
-#: .\patient\views.py:243
+#: .\patient\views.py:266
 msgid "DELIVERY INFORMATIONS"
 msgstr "معلومات الولادة"
 
-#: .\patient\views.py:263
+#: .\patient\views.py:286
 msgid "DELIVERY MAIN PAGE"
 msgstr "صفحة الولادات الرئيسية"
 
-#: .\patient\views.py:287
+#: .\patient\views.py:310
 msgid "EDIT DELIVERY INFORMATIONS FOR  {}"
 msgstr "تعديل بيانات الولادة للمريضة {}"
 
-#: .\patient\views.py:309
+#: .\patient\views.py:332
 msgid "FOLLOW UP PAGE"
 msgstr "صفحة المتابعة الرئيسية"
 
-#: .\patient\views.py:329 .\patient\views.py:369 .\patient\views.py:392
-#: .\patient\views.py:438 .\patient\views.py:460
+#: .\patient\views.py:352 .\patient\views.py:392 .\patient\views.py:415
+#: .\patient\views.py:461 .\patient\views.py:483
 msgid "SAVED SUCCESSFULLY"
 msgstr "تم الحفظ بنجاح"
 
-#: .\patient\views.py:334
+#: .\patient\views.py:357
 msgid "ULTRASOUND READINGS FOR {}"
 msgstr "قراءة السونار للمريضة {}"
 
-#: .\patient\views.py:348
+#: .\patient\views.py:371
 msgid "FOLLOW UP WEEK {}"
 msgstr "متابعة الاسبوع رقم {}"
 
-#: .\patient\views.py:372
+#: .\patient\views.py:395
 msgid "EDIT FOLLOW UP FOR {}"
 msgstr "تعديل متابعات المريضة {}"
 
-#: .\patient\views.py:395
+#: .\patient\views.py:418
 msgid "DISPENSING MEDICINES"
 msgstr "صرف الأدوية"
 
-#: .\patient\views.py:408
+#: .\patient\views.py:431
 msgid "EDIT MEDICINES FOR {}"
 msgstr "تعديل الأدوية للمريضة {}"
 
-#: .\patient\views.py:420
+#: .\patient\views.py:443
 msgid "CONSULTANT PATIENTS LIST"
 msgstr "قائـمة مريضات الأستشاري"
 
-#: .\patient\views.py:441
+#: .\patient\views.py:464
 msgid "DAYS OFF FOR PATIENT {}"
 msgstr "الأجازات للمريضة {}"
 
-#: .\patient\views.py:463
+#: .\patient\views.py:486
 msgid "BLOOD SUGAR & PRESSURE READINGS FOR PATIENT {}"
 msgstr "قرأة ضغط الدم و السكري للمريضة {}"
 
@@ -1198,10 +1207,6 @@ msgstr ""
 #: .\surgery\templates\create-patient-surgery.html:110
 msgid "توصيات"
 msgstr ""
-
-#: .\surgery\templates\create-surgery.html:69
-msgid "Add New Line"
-msgstr "اضـافة سطر جديد"
 
 #: .\surgery\templates\list-doctors.html:31 .\surgery\views.py:158
 msgid "Add New Doctor"

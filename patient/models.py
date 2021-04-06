@@ -243,6 +243,7 @@ class Patient_Medicine(models.Model):
     def __str__(self):
         return self.medicine.trade_name
 
+
 class Gynecology(models.Model):
     diagnosis_en = models.CharField(max_length=200, verbose_name=_('Diagnosis EN'))
     diagnosis_ar = models.CharField(max_length=200, verbose_name=_('Diagnosis AR'))
@@ -254,7 +255,17 @@ class Gynecology(models.Model):
     last_update_date = models.DateField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
-        return self.delivery.description
+        return self.diagnosis_ar
+
+
+class Patient_Gynecology(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True)
+    gynecology = models.ForeignKey(Gynecology, on_delete=models.CASCADE, blank=True, null=True, verbose_name=_('Patient Gynecology'))
+    created_by  = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, on_delete=models.CASCADE, related_name="patient_gyno_created_by")
+    creation_date = models.DateField(auto_now=True, auto_now_add=False)
+    last_update_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, on_delete=models.CASCADE, related_name="patient_gyno_last_updated_by")
+    last_update_date = models.DateField(auto_now=False, auto_now_add=True)
+
 
 class Patient_Days_Off(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='patient_day_off', verbose_name=_('Patient'))
