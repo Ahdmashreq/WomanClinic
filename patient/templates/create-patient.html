@@ -139,6 +139,50 @@
         <div class="panel panel-default card-view">
           <div class="panel-heading">
             <div class="pull-left">
+              <h6 class="panel-title txt-dark">{% trans "Patient Gynecology" %}</h6>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+              <div class="form-wrap">
+                <div class="form-group">
+                  {{ patient_gynecology.management_form }}
+                  <div id="form_set" class="col-md-6">
+                    {% for form in patient_gynecology.forms %}
+                    {{form.non_field_errors}}
+                    {{form.errors}}
+                    <div class="form-group" style="padding-left: 2%;">
+                      <label class="control-label mb-10">{{ form.gynecology.label }}</label>
+                      {{ form.gynecology}}
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div id="empty_form" style="display:none">
+                    <div class="form-group">
+                      {{ patient_gynecology.empty_form.gynecology}}
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="pull-right">
+                <button type="button" id="add_more" class="btn cur-p btn-success">{% trans "Add New Line"%}</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+          <div class="panel-heading">
+            <div class="pull-left">
               <h6 class="panel-title txt-dark">{% trans "Patient medical history" %}</h6>
             </div>
             <div class="clearfix"></div>
@@ -304,49 +348,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="panel panel-default card-view">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <h6 class="panel-title txt-dark">{% trans "Patient Gynecology" %}</h6>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="panel-wrapper collapse in">
-            <div class="panel-body">
-              <div class="form-wrap">
-                <div class="form-group">
-                  {{ patient_gynecology.management_form }}
-                  <div id="form_set" class="col-md-6">
-                  {% for form in patient_gynecology.forms %}
-                  {{form.non_field_errors}}
-                  {{form.errors}}
-                    <div class="form-group" style="padding-left: 2%;">
-                      <label class="control-label mb-10">{{ form.gynecology.label }}</label>
-                      {{ form.gynecology}}
-                    </div>
-                  {% endfor %}
-                  </div>
-                  <div id="empty_form" style="display:none">
-                        <div class="form-group">
-                          {{ patient_gynecology.empty_form.gynecology}}
-                        </div>
-                  </div>
-                </div>
-
-
-              </div>
-              <div class="pull-right">
-                <button type="button" id="add_more" class="btn cur-p btn-success">{% trans "Add New Line"%}</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
 
     <div class="row">
       <div class="col-sm-12">
