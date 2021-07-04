@@ -86,8 +86,8 @@
                         </td>
                         <td>
                           {% if patient.barcode_image %}
-                          <iframe src="/media/{{patient.barcode_image}}" id="barcodeImage" width="25px" height="20px" style="display:none;"></iframe>
-                          <button type="button" name="button" onclick="printImage()">{% trans 'Print' %}</button>
+                          <iframe src="/media/{{patient.barcode_image}}" id="{{patient.id}}_b" width="25px" height="20px" style="display:none;"></iframe>
+                          <button type="button" name="button" onclick="printImage('{{patient.id}}_b')">{% trans 'Print' %}</button>                          
                           {% endif %}
                         </td>
                         <td class="text-nowrap">
@@ -154,8 +154,9 @@
 </script>
 
 <script type="text/javascript">
-  function printImage() {
-    var iframe = document.getElementById('barcodeImage')
+  function printImage(id) {
+
+    var iframe = document.getElementById(id)
     iframe.contentWindow.print()
   }
 </script>
