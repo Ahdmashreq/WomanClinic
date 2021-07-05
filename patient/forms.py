@@ -18,6 +18,8 @@ class PatientForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_show_labels = True
         self.fields['date_of_birth'].widget.input_type = 'date'
+        last_id = Patient.objects.latest('id')
+        self.fields['patient_number'].initial = last_id.id+1
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
         if form_type=='view':
