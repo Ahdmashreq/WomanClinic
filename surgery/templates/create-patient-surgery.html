@@ -124,7 +124,7 @@
                         <td>{{patient_surgery.final_diagnosis}}</td>
                         <td>{{patient_surgery.recomendations}}</td>
                         <td class="text-nowrap">
-                          <a href="{% url 'surgery:delete-patient-surgery' patient_id=patient_id surgery=patient_surgery.id %}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                          <a href="{% url 'surgery:delete-patient-surgery' patient_id=patient_id surgery_id=patient_surgery.id %}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fa fa-trash text-inverse m-r-10"></i>
                           </a>
                         </td>
