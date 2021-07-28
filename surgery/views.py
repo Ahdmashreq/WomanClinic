@@ -134,9 +134,9 @@ def create_patient_surgery_view(request, patient_id):
 
 
 @login_required(login_url='/login')
-def delete_patient_surgery_view(request, pk, patient_id):
+def delete_patient_surgery_view(request, surgery_id, patient_id):
     try:
-        required_record = get_object_or_404(Patient_Surgery, pk=pk)
+        required_record = get_object_or_404(Patient_Surgery, pk=surgery_id)
         required_record.delete()
     except Patient_Surgery.DoesNotExist:
         messages.error(request, 'This record is not in the database. please contact system administrator.')
