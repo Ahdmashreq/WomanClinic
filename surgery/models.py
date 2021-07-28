@@ -58,7 +58,7 @@ class Patient_Surgery(models.Model):
     last_update_date = models.DateField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
-        return self.surgery_name+" "+self.patient.name
+        return self.surgery_name.surgery_name +" "+self.patient.name
 
 class After_Surgery(models.Model):
     surgery = models.ForeignKey(Patient_Surgery, on_delete=models.CASCADE, blank=True, null=True, verbose_name=_('Surgery'))
