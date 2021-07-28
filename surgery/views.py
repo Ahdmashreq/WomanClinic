@@ -134,6 +134,16 @@ def create_patient_surgery_view(request, patient_id):
 
 
 @login_required(login_url='/login')
+def delete_patient_surgery_view(request, pk, patient_id):
+    try:
+        required_record = get_object_or_404(Patient_Surgery, pk=pk)
+        required_record.delete()
+    except Patient_Surgery.DoesNotExist:
+        messages.error(request, 'This record is not in the database. please contact system administrator.')
+    return redirect('surgery:create-patient-surgery', patient_id=patient_id)
+
+
+@login_required(login_url='/login')
 def list_surgery_doctor_view(request):
     all_doctors = Surgery_Doctor.objects.all()
     doctor_form = Surgery_Doctor_Form()
@@ -210,6 +220,7 @@ def delete_surgery_doctor_view(request, pk):
     required_doctor = get_object_or_404(Surgery_Doctor, pk=pk)
     required_doctor.delete()
     return redirect('surgery:list-surgery-doctors')
+
 
 def create_after_surgery_view(request, surgery_id_v):
     after_surg_form = After_Surgery_Form()

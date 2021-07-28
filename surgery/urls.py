@@ -10,6 +10,7 @@ urlpatterns =[
               path('view/<int:pk>', views.view_surgery_view, name='view-surgery'),
               path('delete/<int:pk>', views.delete_surgery_view, name='delete-surgery'),
               path('create/patient/surgery/<int:patient_id>', views.create_patient_surgery_view, name='create-patient-surgery'),
+              path('delete/patient/surgery/<int:patient_id>/<int:surgery>', views.delete_patient_surgery_view, name='delete-patient-surgery'),
               path('list/doctors/', views.list_surgery_doctor_view, name='list-surgery-doctors'),
               path('create/doctor/', views.create_surgery_doctor_view, name='create-doctor'),
               path('update/doctor/<int:pk>', views.update_surgery_doctor_view, name='update-doctor'),
