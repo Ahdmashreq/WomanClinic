@@ -19,6 +19,7 @@
   <!-- Row -->
   <form id="my_form" method="POST"class="form-horizontal">
     {% csrf_token %}
+    {% include 'message.html' %}
     <div class="row">
       <div class="col-sm-12">
         <div class="panel panel-default card-view">

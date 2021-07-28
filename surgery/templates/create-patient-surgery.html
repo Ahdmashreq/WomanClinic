@@ -19,6 +19,7 @@
   <!-- Row -->
   <form id="my_form" method="POST"class="form-horizontal">
     {% csrf_token %}
+    {% include 'message.html' %}
     <div class="row" style="padding-bottom: 10px;">
       <div class="pull-right">
         <button type="submit" class="btn btn-success btn-anim">
