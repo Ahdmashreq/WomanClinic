@@ -19,6 +19,7 @@ class PatientForm(forms.ModelForm):
         self.helper.form_show_labels = True
         self.fields['date_of_birth'].widget.input_type = 'date'
         self.fields['entrance_date'].widget.input_type = 'date'
+        self.fields['exit_date'].widget.input_type = 'date'
         last_id = Patient.objects.latest('id')
         self.fields['patient_number'].initial = last_id.id+1
         for field in self.fields:
