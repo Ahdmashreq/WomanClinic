@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'woman_gyno',
         'USER': 'ahd_sysadmin',
         'PASSWORD': 'm@$hreq123',
-        'HOST': '64.227.126.140',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
