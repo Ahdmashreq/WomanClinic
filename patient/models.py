@@ -65,8 +65,8 @@ def save_barcode_image(sender, instance, **kwargs):
     bar_code_name = instance.barcode
     EAN = barcode.get_barcode_class('code39')
     ean = EAN(bar_code_name)
-    # fullname = ean.save(os.path.join(barcode_dir,bar_code_name))
-    file = open(f'{os.path.join(barcode_dir,bar_code_name)}.svg', 'rb')
+    fullname = ean.save(os.path.join(barcode_dir,bar_code_name))
+    file = open(f'{fullname}.svg', 'rb')
     drawing = svg2rlg(file)
     pdf_file = renderPDF.drawToFile(drawing, f'{os.path.join(barcode_dir,bar_code_name)}.pdf')
     instance.barcode_image = 'barcode/'+f'{bar_code_name}.pdf'
