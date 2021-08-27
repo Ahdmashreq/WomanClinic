@@ -1,13 +1,15 @@
 import os
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from django.db.models import Q
 from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib import messages
 from patient.models import (Patient, Patient_Files, Delivery, Check_Up,
                             Gynecology, Patient_Medicine, Patient_Days_Off,
-                            Ultrasound, Diabetes, Patient_Exit, Past_Medical_History, Patient_Gynecology)
+                            Ultrasound, Diabetes, Past_Medical_History, Patient_Gynecology)
 from patient.forms import (PatientForm, Patient_Files_formset,
                            DeliveryForm, Delivery_Check_Up_formset,
                            Gynecology_formset, GynecologyForm,
@@ -19,9 +21,38 @@ from django.utils.translation import ugettext_lazy as _
 
 
 @login_required(login_url='/login')
-def list_patients_view(request):
-    all_patients = Patient.objects.all()
+def list_patients_view(request,):
+    all_patients = Patient.objects.none()
     return render(request, 'list-patients.html', context={'page_title':_('All Patients'),'all_patients':all_patients})
+        
+    
+
+@login_required(login_url='/login')
+def view_patient_barcode(request):
+    if request.method == "POST":
+        url_code = request.POST.get('barcode')
+        patient_info = request.POST.get('patient_list')
+        truncated_barcode = url_code[:-1]
+        
+        try:
+            if url_code:
+                required_patient = get_object_or_404(Patient, barcode=truncated_barcode)
+                return redirect('patient:view-patient', pk= required_patient.pk)
+            else:
+                all_patients = Patient.objects.filter(Q(name__icontains=patient_info) 
+                | Q(mobile__icontains=patient_info)
+                | Q(insurance_number__icontains=patient_info)
+                | Q(hospital_number__icontains=patient_info)
+                | Q(date_of_birth__icontains=patient_info)
+                )
+                return render(request, 'list-patients.html', context={'page_title':_('All new Patients'),'all_patients':all_patients})
+        except ObjectDoesNotExist:
+            messages.warning(request, 'هذا البحث غير موجود في قاعدة البيانات')
+            return redirect('patient:all-patients')
+        except:
+            messages.warning(request, 'لا توجد بيانات مطابقة لمعايير البحث هذه')
+            return redirect('patient:all-patients')
+
 
 @login_required(login_url='/login')
 def create_patient_view(request):
@@ -67,7 +98,8 @@ def create_patient_view(request):
                 return redirect('surgery:create-patient-surgery', patient_id=master_obj.id)
             else :
                 messages.success(request, 'تم الحفظ بنجاح')
-                return redirect('patient:all-checkup', patient_id=master_obj.id)
+                return redirect('patient:all-patients')
+                # return redirect('patient:all-checkup', patient_id=master_obj.id)
         else:
             if patient_form.errors:
                 messages.error(request, patient_form.errors)
@@ -115,17 +147,6 @@ def view_patient_view(request, pk):
     }
     return render(request, 'view-patient.html', createContext)
 
-
-@login_required(login_url='/login')
-def view_patient_barcode(request):
-    if request.method == "POST":
-        url_code = request.POST.get('barcode')
-        truncated_barcode = url_code[:-1]
-        try:
-            required_patient = get_object_or_404(Patient, barcode=truncated_barcode)
-            return redirect('patient:view-patient', pk= required_patient.pk)
-        except Http404:
-            raise
 
 
 @login_required(login_url='/login')
@@ -281,7 +302,7 @@ def create_delivery_view(request, pk):
             return redirect('patient:view-patient', pk=pk)
         else:
             if delivery_form.errors:
-                messages.error(request, patient_form.errors)
+                messages.error(request, delivery_form.errors)
     delivery_context = {
                          'page_title':_('DELIVERY MAIN PAGE'),
                          'patient_id':pk,
